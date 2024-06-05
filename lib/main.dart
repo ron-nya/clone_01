@@ -1,3 +1,4 @@
+import 'package:authentication/authentication/sign_up_srcreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,10 +14,12 @@ class AuthenticationApp extends StatelessWidget {
     return MaterialApp(
       title: 'Authenticaiton UI',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(color: Colors.white),
+        bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
+        primaryColor: const Color(0xFF1DA1F2),
       ),
-      home: Container(),
+      home: const SignUpSrcreen(),
     );
   }
 }
