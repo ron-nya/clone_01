@@ -1,3 +1,4 @@
+import 'package:authentication/authentication/create_account_screen.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/widgets/auth_button.dart';
@@ -9,6 +10,12 @@ class SignUpSrcreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void onTapCreateAccount(BuildContext context) {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => const CreateAccountScreen(null),
+      ));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: FaIcon(
@@ -79,10 +86,13 @@ class SignUpSrcreen extends StatelessWidget {
                 ],
               ),
               Gaps.v10,
-              const AuthButton(
-                title: 'Create Account',
-                boxColor: Colors.black,
-                textColor: Colors.white,
+              GestureDetector(
+                onTap: () => onTapCreateAccount(context),
+                child: const AuthButton(
+                  title: 'Create Account',
+                  boxColor: Colors.black,
+                  textColor: Colors.white,
+                ),
               ),
               Gaps.v32,
               const Align(
