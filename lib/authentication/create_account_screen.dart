@@ -2,6 +2,7 @@ import 'package:authentication/authentication/customize_experience_screen.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/model/user_model.dart';
+import 'package:authentication/onbarding/conformation_code_screen.dart';
 import 'package:authentication/widgets/auth_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -127,6 +128,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     }
   }
 
+  void _onTapSignUp() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ConformationCodeScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -249,19 +258,23 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         child: _isLast
             ? BottomAppBar(
                 height: Sizes.size96 + Sizes.size96 + Sizes.size24,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Sizes.size24),
-                  child: Column(
-                    children: [
-                      const Text(
-                          'By Signing up, you agree to our Terms, Praivacy Policy, and Cookie Use. Twitter may user your contact information, including your email address and phone number for purposes outlined in our Privacy Policy. Learn more'),
-                      Gaps.v20,
-                      AuthButton(
-                        title: 'Sign Up',
-                        boxColor: Theme.of(context).primaryColor,
-                        textColor: Colors.white,
-                      )
-                    ],
+                child: GestureDetector(
+                  onTap: _onTapSignUp,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: Sizes.size24),
+                    child: Column(
+                      children: [
+                        const Text(
+                            'By Signing up, you agree to our Terms, Praivacy Policy, and Cookie Use. Twitter may user your contact information, including your email address and phone number for purposes outlined in our Privacy Policy. Learn more'),
+                        Gaps.v20,
+                        AuthButton(
+                          title: 'Sign Up',
+                          boxColor: Theme.of(context).primaryColor,
+                          textColor: Colors.white,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               )
