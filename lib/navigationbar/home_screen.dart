@@ -1,11 +1,8 @@
 import 'dart:convert';
-
-import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/model/article_model.dart';
 import 'package:authentication/navigationbar/article_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
