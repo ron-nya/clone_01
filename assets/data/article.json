@@ -1,6 +1,7 @@
 [
     {
         "id": 1,
+        "registDttm": "2024-06-11 10:00:00",
         "writerId": 1,
         "replyCnt": 36,
         "likeCnt": 391,
@@ -14,6 +15,7 @@
     },
     {
         "id": 2,
+        "registDttm": "2024-06-11 11:00:00",
         "writerId": 2,
         "replyCnt": 1,
         "likeCnt": 3,
@@ -22,12 +24,13 @@
         ],
         "articleCntn": "Today Cold",
         "imageUrls": [
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240"
+            "https://picsum.photos/id/11/320/240",
+            "https://picsum.photos/id/12/320/240"
         ]
     },
     {
         "id": 3,
+        "registDttm": "2024-06-11 12:00:00",
         "writerId": 3,
         "replyCnt": 316,
         "likeCnt": 10,
@@ -37,10 +40,11 @@
             6
         ],
         "articleCntn": "Today Warm",
-        "imageCntn": []
+        "imageUrls": []
     },
     {
         "id": 4,
+        "registDttm": "2024-06-11 13:00:00",
         "writerId": 4,
         "replyCnt": 36,
         "likeCnt": 391,
@@ -50,14 +54,15 @@
             6
         ],
         "articleCntn": "Today Good",
-        "imageCntn": [
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240"
+        "imageUrls": [
+            "https://picsum.photos/id/13/320/240",
+            "https://picsum.photos/id/14/320/240",
+            "https://picsum.photos/id/15/320/240"
         ]
     },
     {
         "id": 5,
+        "registDttm": "2024-06-11 14:00:00",
         "writerId": 5,
         "replyCnt": 2,
         "likeCnt": 1,
@@ -66,12 +71,13 @@
             3
         ],
         "articleCntn": "Today Bad",
-        "imageCntn": [
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240",
-            "https://loremflickr.com/320/240"
+        "imageUrls": [
+            "https://picsum.photos/id/16/320/240",
+            "https://picsum.photos/id/17/320/240",
+            "https://picsum.photos/id/18/320/240",
+            "https://picsum.photos/id/19/320/240",
+            "https://picsum.photos/id/20/320/240",
+            "https://picsum.photos/id/21/320/240"
         ]
     }
 ]

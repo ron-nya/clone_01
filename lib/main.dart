@@ -1,6 +1,5 @@
-import 'package:authentication/authentication/create_account_screen.dart';
 import 'package:authentication/constants/sizes.dart';
-import 'package:authentication/onbarding/conformation_code_screen.dart';
+import 'package:authentication/navigationbar/default_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -32,7 +31,7 @@ class AuthenticationApp extends StatelessWidget {
         ),
         primaryColor: const Color(0xFF1DA1F2),
       ),
-      home: const CreateAccountScreen(null),
+      home: const DefaultScreen(),
     );
   }
 }
