@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
+import 'package:authentication/modalBottomSheet/bottom_sheet_option.dart';
 import 'package:authentication/model/article_model.dart';
 import 'package:authentication/model/user_info_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -47,6 +48,16 @@ class _ArticleScreenState extends State<ArticleScreen> {
         }
       }
     });
+  }
+
+  void _onTapOptions(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (context) => SizedBox(
+          height: MediaQuery.of(context).size.height * 0.4,
+          child: const BottomSheetOption()),
+    );
   }
 
   @override
@@ -214,9 +225,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                 TextStyle(color: Colors.black.withOpacity(0.5)),
                           ),
                           Gaps.h10,
-                          const FaIcon(
-                            FontAwesomeIcons.ellipsis,
-                            color: Colors.black,
+                          GestureDetector(
+                            onTap: () => _onTapOptions(context),
+                            child: const FaIcon(
+                              FontAwesomeIcons.ellipsis,
+                              color: Colors.black,
+                            ),
                           ),
                         ],
                       ),

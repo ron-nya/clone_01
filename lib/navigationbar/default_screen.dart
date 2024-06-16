@@ -1,4 +1,5 @@
 import 'package:authentication/constants/sizes.dart';
+import 'package:authentication/modalBottomSheet/write_screen.dart';
 import 'package:authentication/navigationbar/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,7 +32,20 @@ class _HomeScreenState extends State<DefaultScreen> {
 
   void _onTapBottomNavigationBar(int index) {
     setState(() {
-      _selectedIndex = index;
+      if (index != 2) {
+        _selectedIndex = index;
+      } else if (index == 2) {
+        showModalBottomSheet(
+          backgroundColor: Colors.transparent,
+          isScrollControlled: true,
+          context: context,
+          builder: (context) => SizedBox(
+            height: MediaQuery.of(context).size.height * 0.5 +
+                MediaQuery.of(context).viewInsets.bottom,
+            child: const WriteScreen(),
+          ),
+        );
+      }
     });
   }
 
