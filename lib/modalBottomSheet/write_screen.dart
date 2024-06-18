@@ -1,12 +1,9 @@
 import 'dart:ui';
-
-import 'package:authentication/authentication/sign_up_srcreen.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/model/user_info_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WriteScreen extends StatefulWidget {
@@ -19,10 +16,12 @@ class WriteScreen extends StatefulWidget {
 class _WriteScreenState extends State<WriteScreen> {
   final _editController = TextEditingController();
   final _writer = UserInfoModel(
-      id: 10,
-      name: 'jane_mobbin',
-      profileImageUrl: 'https://loremflickr.com/320/240',
-      authentication: false);
+    id: 10,
+    name: 'jane_mobbin',
+    profileImageUrl: 'https://loremflickr.com/320/240',
+    authentication: false,
+    followerCount: 1000,
+  );
 
   bool _isWriting = false;
 

@@ -1,6 +1,8 @@
+import 'package:authentication/Activity/activity_screen.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/modalBottomSheet/write_screen.dart';
 import 'package:authentication/navigationbar/home_screen.dart';
+import 'package:authentication/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -16,15 +18,11 @@ class _HomeScreenState extends State<DefaultScreen> {
 
   final _screens = [
     const HomeScreen(),
-    const Center(
-      child: Text('Search'),
-    ),
+    const SearchScreen(),
     const Center(
       child: Text('Write'),
     ),
-    const Center(
-      child: Text('Favorite'),
-    ),
+    const ActivityScreen(),
     const Center(
       child: Text('MyInfo'),
     ),
@@ -57,15 +55,18 @@ class _HomeScreenState extends State<DefaultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const FaIcon(
-          FontAwesomeIcons.at,
-          color: Colors.black,
-          size: Sizes.size36,
-        ),
-      ),
-      body: SafeArea(
-        child: _screens[_selectedIndex],
+      appBar: (_selectedIndex == 0)
+          ? AppBar(
+              title: const FaIcon(
+                FontAwesomeIcons.at,
+                color: Colors.black,
+                size: Sizes.size36,
+              ),
+            )
+          : null,
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
