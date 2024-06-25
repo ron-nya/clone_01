@@ -1,5 +1,7 @@
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/navigationbar/default_screen.dart';
+import 'package:authentication/navigationbar/home_screen.dart';
+import 'package:authentication/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +14,7 @@ class AuthenticationApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Authenticaiton UI',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,

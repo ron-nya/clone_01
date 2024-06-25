@@ -2,6 +2,7 @@ import 'package:authentication/Activity/activity_screen.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/modalBottomSheet/write_screen.dart';
 import 'package:authentication/navigationbar/home_screen.dart';
+import 'package:authentication/profile/profile_screen.dart';
 import 'package:authentication/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,9 +24,7 @@ class _HomeScreenState extends State<DefaultScreen> {
       child: Text('Write'),
     ),
     const ActivityScreen(),
-    const Center(
-      child: Text('MyInfo'),
-    ),
+    const ProfileScreen(),
   ];
 
   void _onTapBottomNavigationBar(int index) {

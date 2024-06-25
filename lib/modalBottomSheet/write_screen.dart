@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'dart:ui';
+import 'package:authentication/camera/camera_screen.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/model/user_info_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,6 +18,15 @@ class WriteScreen extends StatefulWidget {
 
 class _WriteScreenState extends State<WriteScreen> {
   final _editController = TextEditingController();
+
+  XFile? _image;
+
+  void _setImage(XFile image) {
+    setState(() {
+      _image = image;
+    });
+  }
+
   final _writer = UserInfoModel(
     id: 10,
     name: 'jane_mobbin',
@@ -46,6 +58,15 @@ class _WriteScreenState extends State<WriteScreen> {
 
   void _onTapScaffold() {
     FocusScope.of(context).unfocus();
+  }
+
+  void _onPressPaperClip() async {
+    var image = await Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const CameraScreen(),
+    ));
+    if (image != null) {
+      _setImage(image);
+    }
   }
 
   @override
@@ -157,10 +178,19 @@ class _WriteScreenState extends State<WriteScreen> {
                               ),
                             ),
                           ),
-                          FaIcon(
-                            FontAwesomeIcons.paperclip,
-                            color: Colors.grey.shade400,
+                          IconButton(
+                            onPressed: _onPressPaperClip,
+                            icon: FaIcon(
+                              FontAwesomeIcons.paperclip,
+                              color: Colors.grey.shade400,
+                            ),
                           ),
+                          if (_image != null)
+                            Image.file(
+                              File(_image!.path),
+                              width: 200,
+                              height: 200,
+                            ),
                         ],
                       ),
                     ],

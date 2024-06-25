@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/model/user_info_model.dart';
-import 'package:authentication/onbarding/sub_intersets_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
