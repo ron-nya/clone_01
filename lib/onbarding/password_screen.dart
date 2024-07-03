@@ -1,19 +1,21 @@
+import 'package:authentication/authentication/view_models/signup_view_model.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/onbarding/intersets_screen.dart';
 import 'package:authentication/widgets/auth_button.dart';
 import 'package:authentication/widgets/twitter_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PasswordScreen extends StatefulWidget {
+class PasswordScreen extends ConsumerStatefulWidget {
   const PasswordScreen({super.key});
 
   @override
-  State<PasswordScreen> createState() => _PasswordScreenState();
+  ConsumerState<PasswordScreen> createState() => _PasswordScreenState();
 }
 
-class _PasswordScreenState extends State<PasswordScreen> {
+class _PasswordScreenState extends ConsumerState<PasswordScreen> {
   bool _obscureText = true;
   String _password = '';
   final TextEditingController _passwordController = TextEditingController();
@@ -33,6 +35,12 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
   void onTapNext() {
     if (!_verifyPassword()) return;
+    final state = ref.read(signUpForm.notifier).state;
+    ref.read(signUpForm.notifier).state = {
+      ...state,
+      "password": _password,
+    };
+    ref.read(signUpProvider.notifier).signUp();
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const IntersetsScreen(),
     ));

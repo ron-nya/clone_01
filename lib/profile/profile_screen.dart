@@ -6,16 +6,14 @@ import 'package:authentication/widgets/tweet_content.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
+  static String routerUrl = "/profile";
   const ProfileScreen({super.key});
 
   void _onTapSetting(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SettingScreen(),
-      ),
-    );
+    context.push(SettingScreen.routerUrl);
   }
 
   @override

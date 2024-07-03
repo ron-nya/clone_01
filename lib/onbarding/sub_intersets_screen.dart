@@ -1,8 +1,10 @@
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
+import 'package:authentication/navigationbar/default_screen.dart';
 import 'package:authentication/widgets/sub_interest_button.dart';
 import 'package:authentication/widgets/twitter_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SubIntersetsScreen extends StatefulWidget {
   final List<String> selectedInterest;
@@ -15,6 +17,10 @@ class SubIntersetsScreen extends StatefulWidget {
 class _SubIntersetsScreenState extends State<SubIntersetsScreen> {
   late Map<String, List<String>> _subInerests;
   late List<String> _selectedSubInterests;
+
+  void _onTapNext() {
+    context.go("${DefaultScreen.routerUrl}?show=home");
+  }
 
   void _updateSelectedInterests(String interest) {
     setState(() {
@@ -153,9 +159,12 @@ class _SubIntersetsScreenState extends State<SubIntersetsScreen> {
                       ? Colors.grey
                       : Colors.black,
                 ),
-                child: const Text(
-                  'next',
-                  style: TextStyle(color: Colors.white),
+                child: GestureDetector(
+                  onTap: _onTapNext,
+                  child: const Text(
+                    'next',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],

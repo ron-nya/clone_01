@@ -8,7 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DefaultScreen extends StatefulWidget {
-  const DefaultScreen({super.key});
+  static String routerUrl = "/home";
+  final String tab;
+  const DefaultScreen({
+    super.key,
+    required this.tab,
+  });
 
   @override
   State<DefaultScreen> createState() => _HomeScreenState();
@@ -46,9 +51,32 @@ class _HomeScreenState extends State<DefaultScreen> {
     });
   }
 
+  int _checkParams() {
+    var index = 0;
+    switch (widget.tab) {
+      case 'home':
+        index = 0;
+        break;
+      case 'search':
+        index = 1;
+        break;
+      case 'activity':
+        index = 3;
+        break;
+      case 'profile':
+        index = 4;
+        break;
+      default:
+        index = 0;
+    }
+    return index;
+  }
+
   @override
   void initState() {
     super.initState();
+    _selectedIndex = _checkParams();
+    setState(() {});
   }
 
   @override

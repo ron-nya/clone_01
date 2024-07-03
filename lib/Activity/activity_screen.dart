@@ -2,6 +2,7 @@ import 'package:authentication/constants/gaps.dart';
 import 'package:flutter/material.dart';
 
 class ActivityScreen extends StatefulWidget {
+  static String routerUrl = "/activity";
   const ActivityScreen({super.key});
 
   @override
@@ -10,21 +11,21 @@ class ActivityScreen extends StatefulWidget {
 
 class _ActivityScreenState extends State<ActivityScreen>
     with SingleTickerProviderStateMixin {
-  final List<String> _activitys = ['All', 'Replies', 'Mentions', 'Verified'];
-  late TabController _tabController;
+  final List<String> activitys = ['All', 'Replies', 'Mentions', 'Verified'];
+  late TabController tabController;
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: _activitys.length, vsync: this);
-    _tabController.addListener(() {
+    tabController = TabController(length: activitys.length, vsync: this);
+    tabController.addListener(() {
       setState(() {}); // 탭 선택 상태가 변경될 때 화면을 다시 그리기 위해 사용
     });
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    tabController.dispose();
 
     super.dispose();
   }
@@ -49,15 +50,15 @@ class _ActivityScreenState extends State<ActivityScreen>
             ],
           ),
           bottom: TabBar(
-            controller: _tabController,
+            controller: tabController,
             labelPadding: const EdgeInsets.only(right: 10),
             dividerColor: Colors.transparent,
             indicatorColor: Colors.transparent,
             isScrollable: true,
             splashFactory: NoSplash.splashFactory,
             tabs: [
-              for (var i = 0; i < _activitys.length; i++)
-                _buildTab(_activitys[i], i),
+              for (var i = 0; i < activitys.length; i++)
+                buildTab(activitys[i], i),
             ],
           ),
         ),
@@ -199,8 +200,8 @@ class _ActivityScreenState extends State<ActivityScreen>
     );
   }
 
-  Widget _buildTab(String text, int index) {
-    bool isSelected = _tabController.index == index;
+  Widget buildTab(String text, int index) {
+    bool isSelected = tabController.index == index;
     return Tab(
       child: Container(
         width: 120,

@@ -1,20 +1,30 @@
 import 'package:authentication/constants/sizes.dart';
-import 'package:authentication/navigationbar/default_screen.dart';
-import 'package:authentication/navigationbar/home_screen.dart';
-import 'package:authentication/profile/profile_screen.dart';
+import 'package:authentication/router.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const AuthenticationApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    const ProviderScope(
+      child: AuthenticationApp(),
+    ),
+  );
 }
 
-class AuthenticationApp extends StatelessWidget {
+class AuthenticationApp extends ConsumerWidget {
   const AuthenticationApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
+      routerConfig: ref.watch(routerProvider),
       title: 'Authenticaiton UI',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
@@ -33,7 +43,6 @@ class AuthenticationApp extends StatelessWidget {
         ),
         primaryColor: const Color(0xFF1DA1F2),
       ),
-      home: const DefaultScreen(),
     );
   }
 }

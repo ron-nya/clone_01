@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
+  static String routerUrl = "/article";
   const HomeScreen({super.key});
 
   @override

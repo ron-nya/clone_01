@@ -1,19 +1,24 @@
 import 'package:authentication/authentication/create_account_screen.dart';
+import 'package:authentication/authentication/login_screen.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/widgets/auth_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpSrcreen extends StatelessWidget {
+  static String routerUrl = '/';
   const SignUpSrcreen({super.key});
+
+  void _onTapLogIn(BuildContext context) {
+    context.push(LoginScreen.routerUrl);
+  }
 
   @override
   Widget build(BuildContext context) {
     void onTapCreateAccount(BuildContext context) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const CreateAccountScreen(null),
-      ));
+      context.push(CreateAccountScreen.routerUrl, extra: null);
     }
 
     return Scaffold(
@@ -114,9 +119,12 @@ class SignUpSrcreen extends StatelessWidget {
             children: [
               const Text('Have an account already?'),
               Gaps.h6,
-              Text(
-                'Log in',
-                style: TextStyle(color: Theme.of(context).primaryColor),
+              GestureDetector(
+                onTap: () => _onTapLogIn(context),
+                child: Text(
+                  'Log in',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                ),
               ),
             ],
           ),

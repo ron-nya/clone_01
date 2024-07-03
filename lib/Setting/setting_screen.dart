@@ -1,15 +1,19 @@
 import 'dart:io';
 
 import 'package:authentication/Setting/privacy_screen.dart';
+import 'package:authentication/authentication/repos/authentiaction_repository.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-class SettingScreen extends StatelessWidget {
+class SettingScreen extends ConsumerWidget {
+  static String routerUrl = "/setting";
   const SettingScreen({super.key});
 
-  void _onTapLogOutIos(BuildContext context) {
+  void _onTapLogOutIos(BuildContext context, WidgetRef ref) {
     showCupertinoDialog(
       context: context,
       builder: (context) => CupertinoAlertDialog(
@@ -21,7 +25,10 @@ class SettingScreen extends StatelessWidget {
             child: const Text("No"),
           ),
           CupertinoDialogAction(
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () {
+              ref.read(authRepo).signOut();
+              context.go("/");
+            },
             isDestructiveAction: true,
             child: const Text("Yes"),
           ),
@@ -50,15 +57,11 @@ class SettingScreen extends StatelessWidget {
   }
 
   void _onTapPrivacy(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const PrivacyScreen(),
-      ),
-    );
+    context.push("${SettingScreen.routerUrl}/${PrivacyScreen.routerUrl}");
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -110,7 +113,7 @@ class SettingScreen extends StatelessWidget {
                   title: const Text('Log out'),
                   textColor: Theme.of(context).primaryColor,
                   onTap: () => (Platform.isIOS)
-                      ? _onTapLogOutIos(context)
+                      ? _onTapLogOutIos(context, ref)
                       : _onTapLogOutAndroid(context),
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:authentication/authentication/customize_experience_screen.dart';
+import 'package:authentication/authentication/view_models/signup_view_model.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
 import 'package:authentication/model/user_model.dart';
@@ -6,17 +7,20 @@ import 'package:authentication/onbarding/conformation_code_screen.dart';
 import 'package:authentication/widgets/auth_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CreateAccountScreen extends StatefulWidget {
+class CreateAccountScreen extends ConsumerStatefulWidget {
+  static String routerUrl = "/createAccount";
   final UserModel? user;
   const CreateAccountScreen(this.user, {super.key});
 
   @override
-  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+  ConsumerState<CreateAccountScreen> createState() =>
+      _CreateAccountScreenState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class _CreateAccountScreenState extends ConsumerState<CreateAccountScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
@@ -118,6 +122,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     if (_formKey.currentState == null) {
       return;
     } else if (_formKey.currentState!.validate()) {
+      ref.read(signUpForm.notifier).state = {"email": _emailController.text};
       UserModel userInfo = UserModel(
           name: _nameController.text,
           email: _emailController.text,
