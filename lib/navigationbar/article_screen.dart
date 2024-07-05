@@ -27,7 +27,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
     _replyers = [];
     _writer = UserInfoModel(
       id: 0,
-      name: '',
+      name: 'Anonymous',
       profileImageUrl: 'https://loremflickr.com/320/240',
       authentication: false,
       followerCount: 1000,

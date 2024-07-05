@@ -3,20 +3,25 @@ import 'dart:ui';
 import 'package:authentication/camera/camera_screen.dart';
 import 'package:authentication/constants/gaps.dart';
 import 'package:authentication/constants/sizes.dart';
+import 'package:authentication/model/article_model.dart';
 import 'package:authentication/model/user_info_model.dart';
+import 'package:authentication/navigationbar/view_models/article_upload_model.dart';
+import 'package:authentication/navigationbar/view_models/article_view_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-class WriteScreen extends StatefulWidget {
+class WriteScreen extends ConsumerStatefulWidget {
   const WriteScreen({super.key});
 
   @override
-  State<WriteScreen> createState() => _WriteScreenState();
+  ConsumerState<WriteScreen> createState() => _WriteScreenState();
 }
 
-class _WriteScreenState extends State<WriteScreen> {
+class _WriteScreenState extends ConsumerState<WriteScreen> {
   final _editController = TextEditingController();
 
   XFile? _image;
@@ -67,6 +72,23 @@ class _WriteScreenState extends State<WriteScreen> {
     if (image != null) {
       _setImage(image);
     }
+  }
+
+  void _onTapPost(BuildContext context, WidgetRef ref) {
+    ArticleModel article = ArticleModel(
+      id: 'Anomynous',
+      registDttm: DateTime.now(),
+      writerId: 'Anomynous',
+      replyCnt: 0,
+      likeCnt: 0,
+      replyeIds: [],
+      articleCntn: _editController.text,
+      imageUrls: [],
+    );
+    ref
+        .read(articleUploadProvider.notifier)
+        .uploadArticle(context, _image, article);
+    context.pop();
   }
 
   @override
@@ -211,12 +233,15 @@ class _WriteScreenState extends State<WriteScreen> {
                           ),
                         ),
                         _isWriting
-                            ? Text(
-                                'Post',
-                                style: TextStyle(
-                                  fontSize: Sizes.size16,
-                                  color: Theme.of(context).primaryColor,
-                                  fontWeight: FontWeight.w600,
+                            ? GestureDetector(
+                                onTap: () => _onTapPost(context, ref),
+                                child: Text(
+                                  'Post',
+                                  style: TextStyle(
+                                    fontSize: Sizes.size16,
+                                    color: Theme.of(context).primaryColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               )
                             : Container(),
