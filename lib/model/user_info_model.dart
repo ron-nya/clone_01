@@ -1,5 +1,5 @@
 class UserInfoModel {
-  final int id;
+  final String id;
   final String name;
   final String profileImageUrl;
   final bool authentication;
@@ -22,4 +22,21 @@ class UserInfoModel {
       followerCount: json['followerCount'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "profileImageUrl": profileImageUrl,
+      "authentication": authentication,
+      "followerCount": followerCount,
+    };
+  }
+
+  UserInfoModel.empty()
+      : id = '',
+        name = '',
+        profileImageUrl = '',
+        authentication = false,
+        followerCount = 0;
 }

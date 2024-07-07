@@ -7,8 +7,8 @@ class AuthentiactionRepository {
   User? get user => _firebaseAuth.currentUser;
   bool get isLoggedIn => user != null;
 
-  Future<void> signUp(String email, String password) {
-    return _firebaseAuth.createUserWithEmailAndPassword(
+  Future<UserCredential> signUp(String email, String password) async {
+    return await _firebaseAuth.createUserWithEmailAndPassword(
         email: email, password: password);
   }
 

@@ -26,7 +26,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
   Future<void> loadJsonData() async {
     _replyers = [];
     _writer = UserInfoModel(
-      id: 0,
+      id: '0',
       name: 'Anonymous',
       profileImageUrl: 'https://loremflickr.com/320/240',
       authentication: false,

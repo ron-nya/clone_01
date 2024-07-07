@@ -33,7 +33,7 @@ class _WriteScreenState extends ConsumerState<WriteScreen> {
   }
 
   final _writer = UserInfoModel(
-    id: 10,
+    id: '10',
     name: 'jane_mobbin',
     profileImageUrl: 'https://loremflickr.com/320/240',
     authentication: false,
